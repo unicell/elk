@@ -8,3 +8,22 @@ kibana:
     service: kibana
   links:
     - elasticsearch
+logstash:
+  extends:
+    file: docker-compose-common.yml
+    service: logstash
+  links:
+    - elasticsearch
+logspout:
+  extends:
+    file: docker-compose-common.yml
+    service: logspout
+  environment:
+    DEBUG: true
+  links:
+    - logstash
+  command: syslog://logstash:5000
+cadvisor:
+  extends:
+    file: docker-compose-common.yml
+    service: cadvisor

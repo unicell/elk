@@ -2,8 +2,32 @@ elasticsearch:
   build: dockerfiles/elasticsearch
   ports:
     - "9200:9200"
-    - "9300:9300"
 kibana:
   build: dockerfiles/kibana
   ports:
     - "5601:5601"
+logspout:
+  image: gliderlabs/logspout:master
+  ports:
+    - "8000:80"
+  volumes:
+    - /var/run/docker.sock:/tmp/docker.sock
+logstash:
+  image: logstash:1.5
+  ports:
+    - "5000:5000"
+    - "5000:5000/udp"
+  volumes:
+    - dockerfiles/logstash/conf.d:/etc/logstash/conf.d
+  environment:
+    - LOGSPOUT=ignore
+  command: logstash -f /etc/logstash/conf.d/logstash.conf
+cadvisor:
+  image: google/cadvisor:latest
+  volumes:
+    - /:/rootfs:ro
+    - /var/run:/var/run:rw
+    - /sys:/sys:ro
+    - /var/lib/docker/:/var/lib/docker:ro
+  ports:
+    - "8080:8080"
