@@ -1,0 +1,10 @@
+elasticsearch:
+  extends:
+    file: docker-compose-common.yml
+    service: elasticsearch
+  image: unicell/elasticsearch:latest
+kibana:
+  extends:
+    file: docker-compose-common.yml
+    service: kibana
+  image: unicell/kibana:latest

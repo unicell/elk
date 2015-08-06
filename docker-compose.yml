@@ -1,0 +1,10 @@
+elasticsearch:
+  extends:
+    file: docker-compose-common.yml
+    service: elasticsearch
+kibana:
+  extends:
+    file: docker-compose-common.yml
+    service: kibana
+  links:
+    - elasticsearch

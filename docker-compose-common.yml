@@ -1,0 +1,9 @@
+elasticsearch:
+  build: dockerfiles/elasticsearch
+  ports:
+    - "9200:9200"
+    - "9300:9300"
+kibana:
+  build: dockerfiles/kibana
+  ports:
+    - "5601:5601"
