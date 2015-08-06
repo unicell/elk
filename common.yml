@@ -2,6 +2,8 @@ elasticsearch:
   build: dockerfiles/elasticsearch
   ports:
     - "9200:9200"
+  volumes:
+    - dockerfiles/elasticsearch/config:/usr/share/elasticsearch/config
 kibana:
   build: dockerfiles/kibana
   ports:
