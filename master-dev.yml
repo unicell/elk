@@ -1,0 +1,10 @@
+elasticsearch:
+  extends:
+    file: common.yml
+    service: elasticsearch
+kibana:
+  extends:
+    file: common.yml
+    service: kibana
+  links:
+    - elasticsearch

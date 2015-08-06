@@ -1,0 +1,15 @@
+logstash:
+  extends:
+    file: common.yml
+    service: logstash
+  extra_hosts:
+    - "elasticsearch: ${ES_HOST}"
+logspout:
+  extends:
+    file: common.yml
+    service: logspout
+  environment:
+    DEBUG: true
+  links:
+    - logstash:logstash
+  command: syslog://logstash:5000

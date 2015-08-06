@@ -2,12 +2,10 @@ elasticsearch:
   extends:
     file: common.yml
     service: elasticsearch
-  image: unicell/elasticsearch:latest
 kibana:
   extends:
     file: common.yml
     service: kibana
-  image: unicell/kibana:latest
   links:
     - elasticsearch
 logstash:
@@ -15,14 +13,15 @@ logstash:
     file: common.yml
     service: logstash
   links:
-    - elasticsearch:elasticsearch
+    - elasticsearch
 logspout:
   extends:
     file: common.yml
     service: logspout
-  image: unicell/logspout:v3-master
+  environment:
+    DEBUG: true
   links:
-    - logstash:logstash
+    - logstash
   command: syslog://logstash:5000
 cadvisor:
   extends:

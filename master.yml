@@ -1,0 +1,12 @@
+elasticsearch:
+  extends:
+    file: common.yml
+    service: elasticsearch
+  image: unicell/elasticsearch:latest
+kibana:
+  extends:
+    file: common.yml
+    service: kibana
+  image: unicell/kibana:latest
+  links:
+    - elasticsearch
