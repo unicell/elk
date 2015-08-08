@@ -6,10 +6,14 @@ elasticsearch:
     - data/elasticsearch/data:/usr/share/elasticsearch/data
     - data/elasticsearch/repo:/usr/share/elasticsearch/repo
     - dockerfiles/elasticsearch/config:/usr/share/elasticsearch/config
+  environment:
+    - LOGSPOUT=ignore
 kibana:
   build: dockerfiles/kibana
   ports:
     - "5601:5601"
+  environment:
+    - LOGSPOUT=ignore
 logspout:
   image: gliderlabs/logspout:master
   ports:
