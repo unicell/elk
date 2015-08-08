@@ -3,6 +3,8 @@ elasticsearch:
   ports:
     - "9200:9200"
   volumes:
+    - data/elasticsearch/data:/usr/share/elasticsearch/data
+    - data/elasticsearch/repo:/usr/share/elasticsearch/repo
     - dockerfiles/elasticsearch/config:/usr/share/elasticsearch/config
 kibana:
   build: dockerfiles/kibana
@@ -29,7 +31,7 @@ lumberjack:
   build: dockerfiles/logstash-forwarder
   volumes:
     - certs:/certs
-    - data:/data
+    - data/lumberjack/data:/data
     - dockerfiles/logstash-forwarder/config:/config
   command: logstash-forwarder -config /config/logstash-forwarder.conf
 cadvisor:
