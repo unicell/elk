@@ -20,10 +20,18 @@ logstash:
     - "5000:5000"
     - "5000:5000/udp"
   volumes:
+    - certs:/certs
     - dockerfiles/logstash/conf.d:/etc/logstash/conf.d
   environment:
     - LOGSPOUT=ignore
   command: logstash -f /etc/logstash/conf.d/logstash.conf
+lumberjack:
+  build: dockerfiles/logstash-forwarder
+  volumes:
+    - certs:/certs
+    - data:/data
+    - dockerfiles/logstash-forwarder/config:/config
+  command: logstash-forwarder -config /config/logstash-forwarder.conf
 cadvisor:
   image: google/cadvisor:latest
   volumes:
