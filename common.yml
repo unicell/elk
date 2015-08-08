@@ -4,7 +4,7 @@ elasticsearch:
     - "9200:9200"
   volumes:
     - data/elasticsearch/data:/usr/share/elasticsearch/data
-    - data/elasticsearch/repo:/usr/share/elasticsearch/repo
+    - data/elasticsearch/repo:/repo
     - dockerfiles/elasticsearch/config:/usr/share/elasticsearch/config
   environment:
     - LOGSPOUT=ignore
