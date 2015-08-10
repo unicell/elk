@@ -6,4 +6,4 @@ logstash:
     - "5043:5043"
   extra_hosts:
     - "elasticsearch: ${ES_HOST}"
-  command: logstash -f /etc/logstash/conf.d/twitter-pipeline.conf
+  command: logstash --pluginpath=/opt/logstash/elk_lib -f /etc/logstash/conf.d/nova-scheduler-pipeline.conf

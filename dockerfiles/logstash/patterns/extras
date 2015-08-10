@@ -1,0 +1,11 @@
+OSPREFIX %{TIMESTAMP_ISO8601:log_timestamp}\.?%{INT}?%{SPACE}(?:%{SPACE}|%{NUMBER:pid})%{SPACE}%{LOGLEVEL:log_level}
+REQ_ID req-%{UUID}
+USER_PROJECT_ID (None|%{NOTSPACE:user_id} %{NOTSPACE:project_id})
+CONTEXT (-|%{REQ_ID:req_id} %{USER_PROJECT_ID}?)
+
+FILTER_START (Starting with %{NUMBER:filtered_num_of_hosts} host\(s\))
+FILTER_ENTRY (Filter %{NOTSPACE:filter_name} returned %{NUMBER:filtered_num_of_hosts} host\(s\))
+SCHEDULER_FILTER_INDICATOR (%{FILTER_START}|%{FILTER_ENTRY})
+
+FILTER_RESULT_LIST (Filtered \[%{GREEDYDATA:filter_result_entries}\])
+WEIGHER_RESULT_LIST (Weighed \[%{GREEDYDATA:weigher_result_entries}\])
