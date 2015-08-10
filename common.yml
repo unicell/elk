@@ -28,6 +28,7 @@ logstash:
   volumes:
     - certs:/certs
     - dockerfiles/logstash/conf.d:/etc/logstash/conf.d
+    - dockerfiles/logstash/patterns:/opt/logstash/patterns
   environment:
     - LOGSPOUT=ignore
   command: logstash -f /etc/logstash/conf.d/logstash.conf
