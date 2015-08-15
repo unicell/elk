@@ -21,7 +21,7 @@ logspout:
   volumes:
     - /var/run/docker.sock:/tmp/docker.sock
 logstash:
-  image: logstash:1.5
+  build: dockerfiles/logstash
   ports:
     - "5000:5000"
     - "5000:5000/udp"
