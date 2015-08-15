@@ -2,6 +2,7 @@ logstash:
   extends:
     file: common.yml
     service: logstash
+  image: unicell/logstash:latest
   ports:
     - "5043:5043"
   extra_hosts:
