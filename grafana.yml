@@ -1,0 +1,4 @@
+grafana:
+  extends:
+    file: common.yml
+    service: grafana

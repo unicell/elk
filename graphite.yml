@@ -1,0 +1,4 @@
+graphite:
+  extends:
+    file: common.yml
+    service: graphite
