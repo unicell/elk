@@ -2,3 +2,4 @@ graphite:
   extends:
     file: common.yml
     service: graphite
+  image: unicell/graphite-statsd:latest
