@@ -1,0 +1,3 @@
+[submodule "dockerfiles/docker-graphite-statsd"]
+	path = dockerfiles/docker-graphite-statsd
+	url = git@github.com:unicell/docker-graphite-statsd.git
