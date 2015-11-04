@@ -56,9 +56,11 @@ cadvisor:
   ports:
     - "8080:8080"
 grafana:
-  image: grafana/grafana
+  build: dockerfiles/grafana-docker
   ports:
     - "3000:3000"
+  volumes:
+    - data/grafana:/var/lib/grafana
 graphite:
   build: dockerfiles/docker-graphite-statsd
   ports:
