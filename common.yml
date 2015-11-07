@@ -70,3 +70,11 @@ graphite:
     - "8126:8126"
   volumes:
     - data/graphite-statsd/whisper:/opt/graphite/storage/whisper
+smokeping:
+  build: dockerfiles/smokeping
+  ports:
+    - "8000:80"
+  volumes:
+    - data/smokeping/cache:/var/cache/smokeping
+    - data/smokeping/lib:/var/lib/smokeping
+    - dockerfiles/smokeping/conf/smokeping/config.d:/etc/smokeping/config.d

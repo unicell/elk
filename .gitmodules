@@ -4,3 +4,6 @@
 [submodule "dockerfiles/grafana-docker"]
 	path = dockerfiles/grafana-docker
 	url = git@github.com:unicell/grafana-docker.git
+[submodule "dockerfiles/smokeping"]
+	path = dockerfiles/smokeping
+	url = git@github.com:unicell/smokeping.git
