@@ -9,3 +9,7 @@ SCHEDULER_FILTER_INDICATOR (%{FILTER_START}|%{FILTER_ENTRY})
 
 FILTER_RESULT_LIST (Filtered \[%{GREEDYDATA:filter_result_entries}\])
 WEIGHER_RESULT_LIST (Weighed \[%{GREEDYDATA:weigher_result_entries}\])
+
+# / allowed in OBJECT but not in BUCKET
+BUCKET (?:[A-Za-z0-9$.+!*'(){},~:;=#%_-]*)+
+OBJECT (?:[A-Za-z0-9$.+!*'(){},~:;=#%/_-]*)+
