@@ -102,6 +102,12 @@
 # <http://elasticsearch.org/guide/en/elasticsearch/reference/current/indices-create-index.html>
 # for more information.
 
+index:
+    analysis:
+        analyzer:
+            default:
+                type: keyword
+
 # Set the number of shards (splits) of an index (5 by default):
 #
 #index.number_of_shards: 5
