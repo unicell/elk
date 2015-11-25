@@ -1,9 +1,0 @@
-logstash:
-  extends:
-    file: common.yml
-    service: logstash
-  ports:
-    - "5043:5043"
-  extra_hosts:
-    - "elasticsearch: ${ES_HOST}"
-  command: logstash --pluginpath=/opt/logstash/elk_lib -f /etc/logstash/conf.d/nova-scheduler-pipeline.conf

@@ -1,7 +1,0 @@
-lumberjack:
-  extends:
-    file: common.yml
-    service: lumberjack
-  extra_hosts:
-    - "logstash: ${LS_HOST}"
-  command: logstash-forwarder -config /config/logstash-forwarder.conf
