@@ -395,3 +395,6 @@ discovery.zen.ping.unicast.hosts: ["localhost"]
 #http.jsonp.enable: true
 http.cors.enabled: true
 http.cors.allow-origin: "*"
+
+################################## Tuning ################################
+indices.fielddata.cache.size:  40%

@@ -8,6 +8,7 @@ elasticsearch:
     - dockerfiles/elasticsearch/config:/usr/share/elasticsearch/config
   environment:
     - LOGSPOUT=ignore
+    - ES_HEAP_SIZE=2g
 kibana:
   build: dockerfiles/kibana
   ports:
