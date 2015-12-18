@@ -1,8 +1,8 @@
-FROM elasticsearch:1.7
+FROM elasticsearch:2.1
 MAINTAINER Qiu Yu <unicell@gmail.com>
 
-RUN plugin -i karmi/elasticsearch-paramedic
-RUN plugin -i royrusso/elasticsearch-HQ
+# RUN plugin install karmi/elasticsearch-paramedic
+# RUN plugin install royrusso/elasticsearch-HQ
 
 RUN mkdir /repo && chown elasticsearch:elasticsearch /repo
 VOLUME ["/repo"]

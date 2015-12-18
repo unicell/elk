@@ -4,4 +4,4 @@
 chown -R elasticsearch:elasticsearch /repo
 
 echo "Starting ElasticSearch"
-elasticsearch
+gosu elasticsearch elasticsearch
