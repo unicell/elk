@@ -1,0 +1,112 @@
+{
+    "template": "swift-proxy-*",
+    "settings": {
+        "number_of_shards":   5,
+        "number_of_replicas": 1
+    },
+    "mappings" : {
+      "_default_" : {
+        "dynamic_templates" : [ {
+          "message_field" : {
+            "mapping" : {
+              "index" : "not_analyzed",
+              "omit_norms" : true,
+              "type" : "string"
+            },
+            "match_mapping_type" : "string",
+            "match" : "message"
+          }
+        }, {
+          "string_fields" : {
+            "mapping" : {
+              "index" : "not_analyzed",
+              "omit_norms" : true,
+              "type" : "string"
+            },
+            "match_mapping_type" : "string",
+            "match" : "*"
+          }
+        }, {
+          "float_fields" : {
+            "mapping" : {
+              "type" : "float"
+            },
+            "match_mapping_type" : "float",
+            "match" : "*"
+          }
+        }, {
+          "double_fields" : {
+            "mapping" : {
+              "type" : "double"
+            },
+            "match_mapping_type" : "double",
+            "match" : "*"
+          }
+        }, {
+          "byte_fields" : {
+            "mapping" : {
+              "type" : "byte"
+            },
+            "match_mapping_type" : "byte",
+            "match" : "*"
+          }
+        }, {
+          "short_fields" : {
+            "mapping" : {
+              "type" : "short"
+            },
+            "match_mapping_type" : "short",
+            "match" : "*"
+          }
+        }, {
+          "integer_fields" : {
+            "mapping" : {
+              "type" : "integer"
+            },
+            "match_mapping_type" : "integer",
+            "match" : "*"
+          }
+        }, {
+          "long_fields" : {
+            "mapping" : {
+              "type" : "long"
+            },
+            "match_mapping_type" : "long",
+            "match" : "*"
+          }
+        }, {
+          "date_fields" : {
+            "mapping" : {
+              "type" : "date"
+            },
+            "match_mapping_type" : "date",
+            "match" : "*"
+          }
+        }, {
+          "geo_point_fields" : {
+            "mapping" : {
+              "type" : "geo_point"
+            },
+            "match_mapping_type" : "geo_point",
+            "match" : "*"
+          }
+        } ],
+        "properties" : {
+          "@timestamp" : {
+            "doc_values" : true,
+            "type" : "date"
+          },
+          "@version" : {
+            "index" : "not_analyzed",
+            "doc_values" : true,
+            "type" : "string"
+          }
+        },
+        "_all" : {
+          "enabled" : false,
+          "omit_norms" : true
+        }
+      }
+    },
+    "aliases" : { }
+}
