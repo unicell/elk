@@ -17,6 +17,7 @@ Current this repo includes components of:
 - Grafana (2.5.0)
 - logsout
 - cadvisor
+- beats (1.0.1)
 
 Image Management
 ================
