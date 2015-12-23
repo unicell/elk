@@ -7,10 +7,10 @@ to start services.
 
 Current this repo includes components of:
 
-- ElasticSearch (1.7)
+- ElasticSearch (2.1)
 - Kibana 4
 - Kibana 3 (managed in separate folder as it is built differently than Kibana 4)
-- Logstash (1.5)
+- Logstash (2.1)
 - Logstash-forwarder (0.4.0)
 - Smokeping
 - Graphite (0.9.12) / StatsD (0.7.2)
