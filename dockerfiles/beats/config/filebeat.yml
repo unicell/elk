@@ -1,0 +1,36 @@
+filebeat:
+  # List of prospectors to fetch data.
+  prospectors:
+    # Each - is a prospector. Below are the prospector specific configurations
+    -
+      paths:
+        - /var/log/swift/all.log
+      document_type: swift-proxy
+    -
+      paths:
+        - "/data/dataset/*"
+      document_type: misc
+    -
+      paths:
+        - "-"
+      input_type: stdin 
+      document_type: stdin
+logging:
+  level: info
+  to_syslog: false
+output:
+  logstash:
+    enabled: true
+
+    # The list of downstream Logstash servers. 
+    hosts:
+      - logstash:5043
+
+    #tls: 
+      # The path to your trusted SSL CA file. This is used
+      # to authenticate your downstream server.
+      #certificate_authorities:
+        #- /home/stack/lumberjack/logstash-forwarder.crt
+
+    # Network timeout in seconds.
+    timeout: 15
