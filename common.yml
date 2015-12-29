@@ -47,6 +47,12 @@ lumberjack:
     - data/lumberjack/data:/data
     - dockerfiles/logstash-forwarder/config:/config
   command: logstash-forwarder -config /config/logstash-forwarder.conf
+redis:
+  image: redis:2.8
+  ports:
+    - "6379:6379"
+  volumes:
+    - data/redis:/data
 cadvisor:
   image: google/cadvisor:latest
   volumes:

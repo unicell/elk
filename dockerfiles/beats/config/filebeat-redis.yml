@@ -1,0 +1,39 @@
+filebeat:
+  # List of prospectors to fetch data.
+  prospectors:
+    # Each - is a prospector. Below are the prospector specific configurations
+    -
+      paths:
+        - /var/log/swift/all.log
+      document_type: swift-proxy
+    -
+      paths:
+        - "/data/dataset/*"
+      document_type: misc
+    -
+      paths:
+        - "-"
+      input_type: stdin 
+      document_type: stdin
+logging:
+  level: info
+  to_syslog: false
+output:
+  redis:
+    host: "redis"
+    port: 6379
+
+    # Uncomment out this option if you want to store the topology in Redis.
+    # The default is false.
+    save_topology: true
+
+    # Optional index name. The default is filebeat and generates filebeat keys.
+    index: "filebeat"
+
+    # Optional Redis initial connection timeout in seconds.
+    # The default is 5 seconds.
+    timeout: 5
+
+    # Optional interval for reconnecting to failed Redis connections.
+    # The default is 1 second.
+    reconnect_interval: 1
