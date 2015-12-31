@@ -34,6 +34,7 @@ logstash:
     - "5000:5000/udp"
   volumes:
     - certs:/certs
+    - /dev/urandom:/dev/random
     - dockerfiles/logstash/conf.d:/etc/logstash/conf.d
     - dockerfiles/logstash/patterns:/opt/logstash/patterns
     - dockerfiles/logstash/lib:/opt/logstash/elk_lib
