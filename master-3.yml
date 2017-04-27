@@ -1,12 +1,14 @@
-elasticsearch:
-  extends:
-    file: common.yml
-    service: elasticsearch
-  image: unicell/elasticsearch:latest
-kibana:
-  extends:
-    file: common.yml
-    service: kibana3
-  image: unicell/kibana:3
-  environment:
-    - ES_HOST=${ES_HOST}
+version: '2'
+services:
+  elasticsearch:
+    extends:
+      file: common.yml
+      service: elasticsearch
+    image: unicell/elasticsearch:latest
+  kibana:
+    extends:
+      file: common.yml
+      service: kibana3
+    image: unicell/kibana:3
+    environment:
+      - ES_HOST=${ES_HOST}

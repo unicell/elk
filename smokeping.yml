@@ -1,5 +1,7 @@
-smokeping:
-  extends:
-    file: common.yml
-    service: smokeping
-  image: unicell/smokeping:latest
+version: '2'
+services:
+  smokeping:
+    extends:
+      file: common.yml
+      service: smokeping
+    image: unicell/smokeping:latest

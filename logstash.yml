@@ -1,11 +1,13 @@
-logstash:
-  extends:
-    file: common.yml
-    service: logstash
-  image: unicell/logstash:latest
-  ports:
-    - "5043:5043"
-  extra_hosts:
-    - "elasticsearch: ${ES_HOST}"
-  #command: logstash --pluginpath=/opt/logstash/elk_lib -f /etc/logstash/conf.d/nova-scheduler-pipeline.conf
-  command: logstash --pluginpath=/opt/logstash/elk_lib -f /etc/logstash/conf.d/swift-proxy-pipeline.conf
+version: '2'
+services:
+  logstash:
+    extends:
+      file: common.yml
+      service: logstash
+    image: unicell/logstash:latest
+    ports:
+      - "5043:5043"
+    extra_hosts:
+      - "elasticsearch: ${ES_HOST}"
+    #command: logstash --pluginpath=/opt/logstash/elk_lib -f /etc/logstash/conf.d/nova-scheduler-pipeline.conf
+    command: logstash --pluginpath=/opt/logstash/elk_lib -f /etc/logstash/conf.d/swift-proxy-pipeline.conf

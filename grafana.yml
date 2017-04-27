@@ -1,5 +1,7 @@
-grafana:
-  extends:
-    file: common.yml
-    service: grafana
-  image: unicell/grafana:latest
+version: '2'
+services:
+  grafana:
+    extends:
+      file: common.yml
+      service: grafana
+    image: unicell/grafana:latest

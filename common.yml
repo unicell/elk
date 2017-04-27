@@ -1,88 +1,90 @@
-elasticsearch:
-  build: dockerfiles/elasticsearch
-  ports:
-    - "9200:9200"
-  volumes:
-    - data/elasticsearch/data:/usr/share/elasticsearch/data
-    - data/elasticsearch/repo:/repo
-    - dockerfiles/elasticsearch/config:/usr/share/elasticsearch/config
-  environment:
-    - LOGSPOUT=ignore
-    - ES_HEAP_SIZE=2g
-kibana:
-  build: dockerfiles/kibana
-  ports:
-    - "5601:5601"
-  environment:
-    - LOGSPOUT=ignore
-kibana3:
-  build: dockerfiles/kibana3
-  ports:
-    - "8080:8080"
-  environment:
-    - LOGSPOUT=ignore
-logspout:
-  image: gliderlabs/logspout:master
-  ports:
-    - "8000:80"
-  volumes:
-    - /var/run/docker.sock:/tmp/docker.sock
-logstash:
-  build: dockerfiles/logstash
-  ports:
-    - "5000:5000"
-    - "5000:5000/udp"
-  volumes:
-    - certs:/certs
-    - /dev/urandom:/dev/random
-    - dockerfiles/logstash/conf.d:/etc/logstash/conf.d
-    - dockerfiles/logstash/patterns:/opt/logstash/patterns
-    - dockerfiles/logstash/lib:/opt/logstash/elk_lib
-  environment:
-    - LOGSPOUT=ignore
-  command: logstash -f /etc/logstash/conf.d/logstash.conf
-lumberjack:
-  build: dockerfiles/logstash-forwarder
-  volumes:
-    - certs:/certs
-    - data/lumberjack/data:/data
-    - dockerfiles/logstash-forwarder/config:/config
-  command: logstash-forwarder -config /config/logstash-forwarder.conf
-redis:
-  image: redis:2.8
-  ports:
-    - "6379:6379"
-  volumes:
-    - data/redis:/data
-cadvisor:
-  image: google/cadvisor:latest
-  volumes:
-    - /:/rootfs:ro
-    - /var/run:/var/run:rw
-    - /sys:/sys:ro
-    - /var/lib/docker/:/var/lib/docker:ro
-  ports:
-    - "8080:8080"
-grafana:
-  build: dockerfiles/grafana-docker
-  ports:
-    - "3000:3000"
-  volumes:
-    - data/grafana:/var/lib/grafana
-graphite:
-  build: dockerfiles/docker-graphite-statsd
-  ports:
-    - "80:80"
-    - "2003:2003"
-    - "8125:8125/udp"
-    - "8126:8126"
-  volumes:
-    - data/graphite-statsd/whisper:/opt/graphite/storage/whisper
-smokeping:
-  build: dockerfiles/smokeping
-  ports:
-    - "8000:80"
-  volumes:
-    - data/smokeping/cache:/var/cache/smokeping
-    - data/smokeping/lib:/var/lib/smokeping
-    - dockerfiles/smokeping/conf/smokeping/config.d:/etc/smokeping/config.d
+version: '2'
+services:
+  elasticsearch:
+    build: dockerfiles/elasticsearch
+    ports:
+      - "9200:9200"
+    volumes:
+      - ./data/elasticsearch/data:/usr/share/elasticsearch/data
+      - ./data/elasticsearch/repo:/repo
+      - ./dockerfiles/elasticsearch/config:/usr/share/elasticsearch/config
+    environment:
+      - LOGSPOUT=ignore
+      - ES_HEAP_SIZE=2g
+  kibana:
+    build: dockerfiles/kibana
+    ports:
+      - "5601:5601"
+    environment:
+      - LOGSPOUT=ignore
+  kibana3:
+    build: dockerfiles/kibana3
+    ports:
+      - "8080:8080"
+    environment:
+      - LOGSPOUT=ignore
+  logspout:
+    image: gliderlabs/logspout:master
+    ports:
+      - "8000:80"
+    volumes:
+      - /var/run/docker.sock:/tmp/docker.sock
+  logstash:
+    build: dockerfiles/logstash
+    ports:
+      - "5000:5000"
+      - "5000:5000/udp"
+    volumes:
+      - ./certs:/certs
+      - /dev/urandom:/dev/random
+      - ./dockerfiles/logstash/conf.d:/etc/logstash/conf.d
+      - ./dockerfiles/logstash/patterns:/opt/logstash/patterns
+      - ./dockerfiles/logstash/lib:/opt/logstash/elk_lib
+    environment:
+      - LOGSPOUT=ignore
+    command: logstash -f /etc/logstash/conf.d/logstash.conf
+  lumberjack:
+    build: dockerfiles/logstash-forwarder
+    volumes:
+      - ./certs:/certs
+      - ./data/lumberjack/data:/data
+      - ./dockerfiles/logstash-forwarder/config:/config
+    command: logstash-forwarder -config /config/logstash-forwarder.conf
+  redis:
+    image: redis:2.8
+    ports:
+      - "6379:6379"
+    volumes:
+      - ./data/redis:/data
+  cadvisor:
+    image: google/cadvisor:latest
+    volumes:
+      - /:/rootfs:ro
+      - /var/run:/var/run:rw
+      - /sys:/sys:ro
+      - /var/lib/docker/:/var/lib/docker:ro
+    ports:
+      - "8080:8080"
+  grafana:
+    build: dockerfiles/grafana-docker
+    ports:
+      - "3000:3000"
+    volumes:
+      - ./data/grafana:/var/lib/grafana
+  graphite:
+    build: dockerfiles/docker-graphite-statsd
+    ports:
+      - "80:80"
+      - "2003:2003"
+      - "8125:8125/udp"
+      - "8126:8126"
+    volumes:
+      - ./data/graphite-statsd/whisper:/opt/graphite/storage/whisper
+  smokeping:
+    build: dockerfiles/smokeping
+    ports:
+      - "8000:80"
+    volumes:
+      - ./data/smokeping/cache:/var/cache/smokeping
+      - ./data/smokeping/lib:/var/lib/smokeping
+      - ./dockerfiles/smokeping/conf/smokeping/config.d:/etc/smokeping/config.d
