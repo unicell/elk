@@ -1,0 +1,13 @@
+node.name: logstash
+
+# references
+# https://www.elastic.co/guide/en/logstash/current/logstash-settings-file.html
+# https://www.elastic.co/guide/en/logstash/current/dir-layout.html
+
+path.config: /usr/share/logstash/pipeline
+#path.logs: /var/log/logstash
+#path.data: /var/lib/logstash
+xpack.monitoring.enabled: "true"
+xpack.monitoring.elasticsearch.url: http://elasticsearch:9200
+#xpack.monitoring.elasticsearch.username: logstash_system
+#xpack.monitoring.elasticsearch.password: changeme

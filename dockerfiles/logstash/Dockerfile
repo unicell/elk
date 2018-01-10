@@ -1,4 +1,4 @@
-FROM logstash:2.1
+FROM docker.elastic.co/logstash/logstash-oss:6.1.1
 MAINTAINER Qiu Yu <unicell@gmail.com>
 
-RUN plugin install logstash-filter-elapsed
+RUN bin/logstash-plugin install x-pack

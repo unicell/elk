@@ -9,19 +9,14 @@ services:
     ports:
       - "8080:8080"
   logstash:
-    build: dockerfiles/logstash
+    build:
+      context: ./dockerfiles/logstash
     ports:
-      - "5000:5000"
-      - "5000:5000/udp"
+      - "5044:5044"
     volumes:
-      - ./certs:/certs
-      - /dev/urandom:/dev/random
-      - ./dockerfiles/logstash/conf.d:/etc/logstash/conf.d
-      - ./dockerfiles/logstash/patterns:/opt/logstash/patterns
-      - ./dockerfiles/logstash/lib:/opt/logstash/elk_lib
-    environment:
-      - LOGSPOUT=ignore
-    command: logstash -f /etc/logstash/conf.d/logstash.conf
+      - ./dockerfiles/logstash/config/logstash.yml:/usr/share/logstash/config/logstash.yml
+      - ./dockerfiles/logstash/config/pipelines.yml:/usr/share/logstash/config/pipelines.yml
+      - ./dockerfiles/logstash/pipeline:/usr/share/logstash/pipeline
   redis:
     image: redis:2.8
     ports:

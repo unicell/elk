@@ -12,6 +12,7 @@ services:
       service: logstash
     extra_hosts:
       - "elasticsearch:<ip>"
+    command: logstash --config.reload.automatic
   cadvisor:
     extends:
       file: common.yml
