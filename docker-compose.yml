@@ -1,30 +1,19 @@
-elasticsearch:
-  extends:
-    file: common.yml
-    service: elasticsearch
-  image: unicell/elasticsearch:latest
-kibana:
-  extends:
-    file: common.yml
-    service: kibana
-  image: unicell/kibana:latest
-  links:
-    - elasticsearch
-logstash:
-  extends:
-    file: common.yml
-    service: logstash
-  links:
-    - elasticsearch:elasticsearch
-logspout:
-  extends:
-    file: common.yml
-    service: logspout
-  image: unicell/logspout:v3-master
-  links:
-    - logstash:logstash
-  command: syslog://logstash:5000
-cadvisor:
-  extends:
-    file: common.yml
-    service: cadvisor
+version: '2'
+services:
+  kibana:
+    extends:
+      file: common.yml
+      service: kibana
+    image: unicell/kibana:latest
+    extra_hosts:
+      - "elasticsearch:<ip>"
+  logstash:
+    extends:
+      file: common.yml
+      service: logstash
+    extra_hosts:
+      - "elasticsearch:<ip>"
+  cadvsor:
+    extends:
+      file: common.yml
+      service: cadvisor

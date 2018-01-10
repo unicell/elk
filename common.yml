@@ -1,34 +1,13 @@
 version: '2'
 services:
-  elasticsearch:
-    build: dockerfiles/elasticsearch
-    ports:
-      - "9200:9200"
-    volumes:
-      - ./data/elasticsearch/data:/usr/share/elasticsearch/data
-      - ./data/elasticsearch/repo:/repo
-      - ./dockerfiles/elasticsearch/config:/usr/share/elasticsearch/config
-    environment:
-      - LOGSPOUT=ignore
-      - ES_HEAP_SIZE=2g
   kibana:
     build: dockerfiles/kibana
     ports:
       - "5601:5601"
-    environment:
-      - LOGSPOUT=ignore
   kibana3:
     build: dockerfiles/kibana3
     ports:
       - "8080:8080"
-    environment:
-      - LOGSPOUT=ignore
-  logspout:
-    image: gliderlabs/logspout:master
-    ports:
-      - "8000:80"
-    volumes:
-      - /var/run/docker.sock:/tmp/docker.sock
   logstash:
     build: dockerfiles/logstash
     ports:
@@ -43,13 +22,6 @@ services:
     environment:
       - LOGSPOUT=ignore
     command: logstash -f /etc/logstash/conf.d/logstash.conf
-  lumberjack:
-    build: dockerfiles/logstash-forwarder
-    volumes:
-      - ./certs:/certs
-      - ./data/lumberjack/data:/data
-      - ./dockerfiles/logstash-forwarder/config:/config
-    command: logstash-forwarder -config /config/logstash-forwarder.conf
   redis:
     image: redis:2.8
     ports:
