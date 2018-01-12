@@ -10,12 +10,10 @@ Current this repo includes components of:
 - ElasticSearch (2.1)
 - Kibana 4
 - Kibana 3 (managed in separate folder as it is built differently than Kibana 4)
-- Logstash (2.1)
-- Logstash-forwarder (0.4.0)
+- Logstash (6.1.1)
 - Smokeping
 - Graphite (0.9.12) / StatsD (0.7.2)
 - Grafana (2.5.0)
-- logsout
 - cadvisor
 - beats (1.0.1)
 
@@ -34,9 +32,11 @@ Use Cases
 =========
 
 Comes along with the logstash, there're several processing pipelines I hacked to
-parse OpenStack component logs for analysis / troubleshooting purpose.
+parse log from various projects (namingly, OpenStack Nova, Swift, Envoy) I
+worked on for analysis / troubleshooting purpose.
 
-Currently two pipelines are added into the repo.
+With Logstash adding multi pipeline feature, configs are migrated that way but
+old version are still kept around for recording purpose.
 
 nova-scheduler
 --------------
