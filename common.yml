@@ -17,6 +17,7 @@ services:
       - ./dockerfiles/logstash/config/logstash.yml:/usr/share/logstash/config/logstash.yml
       - ./dockerfiles/logstash/config/pipelines.yml:/usr/share/logstash/config/pipelines.yml
       - ./dockerfiles/logstash/pipeline:/usr/share/logstash/pipeline
+      - ./dockerfiles/logstash/patterns:/usr/share/logstash/patterns
   redis:
     image: redis:2.8
     ports:

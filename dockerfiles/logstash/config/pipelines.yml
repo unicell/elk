@@ -3,6 +3,11 @@
   pipeline.batch.size: 1
   path.config: "/usr/share/logstash/pipeline/debug.conf"
 
+- pipeline.id: envoy_access
+  pipeline.workers: 1
+  pipeline.batch.size: 1
+  path.config: "/usr/share/logstash/pipeline/envoy_access.conf"
+
 # Available options:
 #
 #   # name of the pipeline
