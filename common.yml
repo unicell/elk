@@ -10,14 +10,14 @@ services:
       - "8080:8080"
   logstash:
     build:
-      context: ./dockerfiles/logstash
+      context: ./logstash
     ports:
       - "5044:5044"
     volumes:
-      - ./dockerfiles/logstash/config/logstash.yml:/usr/share/logstash/config/logstash.yml
-      - ./dockerfiles/logstash/config/pipelines.yml:/usr/share/logstash/config/pipelines.yml
-      - ./dockerfiles/logstash/pipeline:/usr/share/logstash/pipeline
-      - ./dockerfiles/logstash/patterns:/usr/share/logstash/patterns
+      - ./logstash/config/logstash.yml:/usr/share/logstash/config/logstash.yml
+      - ./logstash/config/pipelines.yml:/usr/share/logstash/config/pipelines.yml
+      - ./logstash/pipeline:/usr/share/logstash/pipeline
+      - ./logstash/patterns:/usr/share/logstash/patterns
   redis:
     image: redis:2.8
     ports:
